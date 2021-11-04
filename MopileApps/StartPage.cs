@@ -9,6 +9,7 @@ namespace MopileApps
         public string Title { get; set; }
         public string News { get; set; }
         public string Autor { get; set; }
+        public string Date { get; set; }
 
         public override bool Equals(object obj)
         {

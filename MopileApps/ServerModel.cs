@@ -14,8 +14,9 @@ namespace MopileApps
     {
         public class Server
         {
-            //Принимает урл сервера, над оне забыть проставить 
-            const string Url = "";
+            //Принимает урл сервера.
+            //Тестовый сервер принимает сводку новостей
+            const string Url = "http://127.0.0.1:8000/api/news/";
 
 
             JsonSerializerOptions option = new JsonSerializerOptions
