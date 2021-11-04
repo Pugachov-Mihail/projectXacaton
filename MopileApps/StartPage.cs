@@ -5,10 +5,15 @@ namespace MopileApps
 {
     class StartPage : ContentPage
     {
-        public StartPage()
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string News { get; set; }
+        public string Autor { get; set; }
+
+        public override bool Equals(object obj)
         {
-            Label header = new Label() { Text = "Привет из формы"};
-            this.Content = header;
+            StartPage friends = obj as StartPage;
+            return this.Id == friends.Id;
         }
     }
 }
