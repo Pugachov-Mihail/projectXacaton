@@ -5,8 +5,11 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+
+
 namespace MopileApps
 {
+    //Класс серверный
     class ServerModel
     {
         public class Server
@@ -26,6 +29,8 @@ namespace MopileApps
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             return client;
         }
+
+        //Расшифровка json 
         public async Task<IEnumerable<StartPage>> Get()
             {
                 HttpClient client = GetClient();
