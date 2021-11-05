@@ -11,15 +11,22 @@ namespace MopileApps
 {
     public partial class MainPage : ContentPage
     {
-        public const string HEADER = "Good";
-        public const double age = 35;
+
         public MainPage()
         {
-            InitializeComponent();
-        }
-        private void clicked_btn1(object sender, EventArgs e)
-        {
-            text1.Text = " а я отобразился ";
+            StackLayout stackLayout = new StackLayout();
+            for(int i=1; i<20; i++)
+            {
+                Label label = new Label
+                {
+                    Text = "Вывод: " + i,
+                    FontSize = 30
+                };
+                stackLayout.Children.Add(label);
+            }
+            ScrollView scrollView = new ScrollView();
+            scrollView.Content = stackLayout;
+            this.Content = scrollView;
         }
     }
 }
