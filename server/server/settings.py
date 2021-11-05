@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'ckeditor',
     'ckeditor_uploader',
-    'news',
     "corsheaders",
+    'news',
+    'review',
 ]
 
 MIDDLEWARE = [
