@@ -5,25 +5,10 @@
              x:Class="MopileApps.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="}" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="10" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="35" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span 
-                            Text="Я запустился"
-                            TextColor="{local:Colors Blue=230, Green=30,Red=60 }"
-                            />
-                        <Span x:Name="text1" FontSize="35"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-       
+        <Label FontSize="Medium" FontAttributes="Bold" Text="{Binding News}" />
+        <Label FontSize="Medium" FontAttributes="Bold"  Text="{Binding Title}" />
+        <Label FontSize="Medium" FontAttributes="Bold" Text="{Binding Text}" />
+        <Button Text="Получить новости" Command="{Binding LoadDataCommand}"  />
     </StackLayout>
 
 </ContentPage>
