@@ -3,7 +3,7 @@
 
 namespace MopileApps
 {
-    public class StartPage
+    public class ViewNews
     {
         public int Id { get; set; }
         public string Title { get; set; }

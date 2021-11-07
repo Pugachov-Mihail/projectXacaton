@@ -5,7 +5,7 @@
              x:Class="MopileApps.MainPage">
 
     <StackLayout>
-        <Label FontSize="Medium" FontAttributes="Bold" Text="{Binding News}" />
+        <Label FontSize="50" FontAttributes="Bold" Text="{Binding Title}}" />
         <Label FontSize="Medium" FontAttributes="Bold"  Text="{Binding Title}" />
         <Label FontSize="Medium" FontAttributes="Bold" Text="{Binding Text}" />
         <Button Text="Получить новости" Command="{Binding LoadDataCommand}"  />

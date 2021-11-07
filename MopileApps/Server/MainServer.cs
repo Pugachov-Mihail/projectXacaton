@@ -9,7 +9,7 @@ using Xamarin.Forms;
 namespace MopileApps.Client
 {
     ///const string Url = "http://127.0.0.1:8000/api/news/";
-    public class View1: INotifyPropertyChanged
+    public class MainServer: INotifyPropertyChanged
     {
         private int id;
         private string title;
@@ -74,14 +74,14 @@ namespace MopileApps.Client
         }
         public ICommand LoadDataCommand { protected set; get; }
 
-        public View1()
+        public MainServer()
         {
             this.LoadDataCommand = new Command(LoadData);
         }
 
         public async void LoadData()
         {
-            string url = "http://127.0.0.1:8000/api/news/";
+            string url = "https://10.0.2.2:8000/api/news/";
 
             try
             {
@@ -93,7 +93,7 @@ namespace MopileApps.Client
                 JObject o = JObject.Parse(content);
 
                 var str = o.SelectToken(@"$.query.results.rate");
-                var rateInfo = JsonConvert.DeserializeObject<StartPage>(str.ToString());
+                var rateInfo = JsonConvert.DeserializeObject<ViewNews>(str.ToString());
 
                 this.id = rateInfo.Id;
                 this.title = rateInfo.Title;
