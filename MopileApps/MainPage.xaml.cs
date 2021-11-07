@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 using MopileApps.Client;
-
+using System;
 
 
 namespace MopileApps
@@ -12,8 +12,9 @@ namespace MopileApps
         {
             InitializeComponent();
 
-            View1 viewModel = new View1();
+            MainServer viewModel = new MainServer();
             this.BindingContext = viewModel;
+            Console.Write(viewModel);
         }
     }
 }

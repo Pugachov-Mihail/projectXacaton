@@ -81,7 +81,7 @@ namespace MopileApps.Client
 
         public async void LoadData()
         {
-            string url = "https://10.0.2.2:8000/api/news/";
+            string url = "https://d28f-185-34-240-62.ngrok.io/api/news/";
 
             try
             {
@@ -94,7 +94,7 @@ namespace MopileApps.Client
 
                 var str = o.SelectToken(@"$.query.results.rate");
                 var rateInfo = JsonConvert.DeserializeObject<ViewNews>(str.ToString());
-
+                Console.WriteLine(rateInfo);
                 this.id = rateInfo.Id;
                 this.title = rateInfo.Title;
                 this.news = rateInfo.News;

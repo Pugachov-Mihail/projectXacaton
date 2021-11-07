@@ -9,3 +9,5 @@ class News(models.Model):
     news = models.SlugField(max_length=50)
     text = models.TextField(max_length=500)
     date = models.DateField(auto_now_add=True)
+
+    #https://d28f-185-34-240-62.ngrok.io/
