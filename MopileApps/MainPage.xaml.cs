@@ -14,56 +14,36 @@ namespace MopileApps
             //
             //MainServer viewModel = new MainServer();
             //this.BindingContext = viewModel;
-            StackLayout stackLayout = new StackLayout();
-
-            Button btn = new Button()
+            Label label = new Label
             {
-                Text = "Press",
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Button)),
-                BorderWidth = 1,
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.CenterAndExpand
+                VerticalTextAlignment = TextAlignment.Center,
+                HorizontalTextAlignment = TextAlignment.Center,
+                Text = "Hello",
+                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label))
             };
 
-            btn.Clicked += btnPress;
-            Label header = new Label();
-            this.Content = header;
-
-            FormattedString formattedString = new FormattedString();
-            formattedString.Spans.Add(new Span
+            TapGestureRecognizer tapGesture = new TapGestureRecognizer
             {
-                Text = "News ",
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label))
-            });
-            formattedString.Spans.Add(new Span
+                NumberOfTapsRequired = 2
+            };
+            int count = 0;
+            tapGesture.Tapped += (s, e) =>
             {
-                Text = "хорошая",
-                FontAttributes = FontAttributes.Bold
-            });
-            formattedString.Spans.Add(new Span
-            {
-                Text = " погода!",
-                ForegroundColor = Color.Red
-            });
-            header.FormattedText = formattedString;
-
-            header.VerticalTextAlignment = TextAlignment.Center;
-            header.HorizontalTextAlignment = TextAlignment.Center;
-
-            stackLayout.Children.Add(btn);
-
-        }
-        private void btnPress(object sender, System.EventArgs e)
-        {
-            Button button = (Button)sender;
-            button.Text = "Нажат";
-            button.BackgroundColor = Color.Red;
-=======
-            
-            MainServer viewModel = new MainServer();
-            this.BindingContext = viewModel;
-            Console.Write(viewModel);
->>>>>>> ff775216cc1b40fff45a7c16d6c5bfc71ef64c0b
+                count++;
+                if (count % 2 == 0)
+                {
+                    label.BackgroundColor = Color.Black;
+                    label.TextColor = Color.White;
+                }
+                else
+                {
+                    label.BackgroundColor = Color.Red;
+                    label.TextColor = Color.Gray;
+                }
+                label.Text = $"Ты нажал { count } раз ";
+            };
+            label.GestureRecognizers.Add(tapGesture);
+            Content = label;
         }
     }
 }
