@@ -11,7 +11,6 @@ namespace MopileApps
         public MainPage()
         {
             InitializeComponent();
-<<<<<<< HEAD
             //
             //MainServer viewModel = new MainServer();
             //this.BindingContext = viewModel;
