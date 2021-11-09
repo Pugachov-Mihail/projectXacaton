@@ -11,6 +11,7 @@ namespace MopileApps
         public MainPage()
         {
             InitializeComponent();
+<<<<<<< HEAD
             //
             //MainServer viewModel = new MainServer();
             //this.BindingContext = viewModel;
@@ -58,6 +59,12 @@ namespace MopileApps
             Button button = (Button)sender;
             button.Text = "Нажат";
             button.BackgroundColor = Color.Red;
+=======
+            
+            MainServer viewModel = new MainServer();
+            this.BindingContext = viewModel;
+            Console.Write(viewModel);
+>>>>>>> ff775216cc1b40fff45a7c16d6c5bfc71ef64c0b
         }
     }
 }
