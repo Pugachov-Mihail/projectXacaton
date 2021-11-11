@@ -81,28 +81,27 @@ namespace MopileApps.Client
 
         public async void LoadData()
         {
-            string url = "https://d28f-185-34-240-62.ngrok.io/api/news/";
+            string url = "https://f2f1-185-34-240-62.ngrok.io/api/news/";
 
             try
             {
+                //var handler = new HttpClientHandler();
                 HttpClient client = new HttpClient();
-                // client.BaseAddress = new Uri(url);
-                var response = await client.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                var content = await response.Content.ReadAsStringAsync();
-                JObject o = JObject.Parse(content);
-
-                var str = o.SelectToken(@"$.query.results.rate");
-                var rateInfo = JsonConvert.DeserializeObject<ViewNews>(str.ToString());
+                //client.BaseAddress = new Uri(url);
+                string response = await client.GetStringAsync(url);
+                var result = JToken.Parse(response);
+                string rateInfo = result[0].ToString();
+                //var rateInfo = JsonConvert.DeserializeObject<ViewNews>(result.ToString());
                 Console.WriteLine(rateInfo);
-                this.id = rateInfo.Id;
-                this.title = rateInfo.Title;
-                this.news = rateInfo.News;
-                this.autor = rateInfo.Autor;
-                this.date = rateInfo.Date;
-                this.text = rateInfo.Text;
+                //this.id = rateInfo;
 
-    }
+                Console.WriteLine(this.title);
+                this.News = result[0]["news"].ToString();
+                this.Autor = result[0]["autor"].ToString();
+                this.Date = result[0]["date"].ToString();
+                this.Text = result[0]["text"].ToString();
+
+            }
             catch (Exception ex)
             { Console.WriteLine(ex); }
         }

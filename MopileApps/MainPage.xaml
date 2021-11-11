@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MopileApps"
+             xmlns:local="clr-namespace:MopileApps" xmlns:client="clr-namespace:MopileApps.Client" x:DataType="client:MainServer"
              x:Class="MopileApps.MainPage">
 
     <StackLayout>
-        <Label FontSize="50" FontAttributes="Bold" Text="{Binding Title}" />
-        <Label FontSize="Medium" FontAttributes="Bold"  Text="{Binding Title}" />
-        <Label FontSize="Medium" FontAttributes="Bold" Text="{Binding Text}" />
-        <Button Text="Получить новости" Command="{Binding LoadDataCommand}"  />
+        <Label FontSize="24" FontAttributes="Bold" Text="{Binding Title}" />
+        <Label FontSize="24" FontAttributes="Bold" Text="{Binding Autor}" />
+        <Label FontSize="24" FontAttributes="Bold" Text="{Binding Date}" />
     </StackLayout>
 
 </ContentPage>
