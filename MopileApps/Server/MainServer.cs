@@ -81,12 +81,14 @@ namespace MopileApps.Client
 
         public async void LoadData()
         {
-            string url = "https://f2f1-185-34-240-62.ngrok.io/api/news/";
+            string url = "https://f972-185-34-240-5.ngrok.io/api/news/";
 
             try
             {
-                //var handler = new HttpClientHandler();
+
+
                 HttpClient client = new HttpClient();
+<<<<<<< HEAD
                 //client.BaseAddress = new Uri(url);
                 while (true)
                 {
@@ -96,6 +98,23 @@ namespace MopileApps.Client
                     //var rateInfo = JsonConvert.DeserializeObject<ViewNews>(result.ToString());
                     Console.WriteLine(rateInfo);
                     //this.id = rateInfo;
+=======
+                string response = await client.GetStringAsync(url);
+                var result = JToken.Parse(response);
+                string rateInfo = result.ToString();
+
+                for (int i = 0; i < result.ToString().Length; i++)
+                {
+                    
+                    this.News = result[i]["news"].ToString();
+                    this.Autor = result[i]["autor"].ToString();
+                    this.Date = result[i]["date"].ToString();
+                    this.Text = result[i]["text"].ToString();
+                    Console.WriteLine("param --------" + result[i]);
+
+                }
+
+>>>>>>> a1c60c967999679a9ecdd9b06acf0049f04ee092
 
                     this.News = result[0]["news"].ToString();
                     this.News = result[1]["news"].ToString();
