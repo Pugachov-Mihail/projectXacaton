@@ -11,6 +11,7 @@ namespace MopileApps.Client
     ///const string Url = "http://127.0.0.1:8000/api/news/";
     public class MainServer: INotifyPropertyChanged
     {
+        // Комментарий для тестирования git (сделала Алёна)
         private int id;
         private string title;
         private string news;
