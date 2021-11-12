@@ -81,25 +81,28 @@ namespace MopileApps.Client
 
         public async void LoadData()
         {
-            string url = "https://f2f1-185-34-240-62.ngrok.io/api/news/";
+            string url = "https://f972-185-34-240-5.ngrok.io/api/news/";
 
             try
             {
-                //var handler = new HttpClientHandler();
+
+
                 HttpClient client = new HttpClient();
-                //client.BaseAddress = new Uri(url);
                 string response = await client.GetStringAsync(url);
                 var result = JToken.Parse(response);
-                string rateInfo = result[0].ToString();
-                //var rateInfo = JsonConvert.DeserializeObject<ViewNews>(result.ToString());
-                Console.WriteLine(rateInfo);
-                //this.id = rateInfo;
+                string rateInfo = result.ToString();
 
-                Console.WriteLine(this.title);
-                this.News = result[0]["news"].ToString();
-                this.Autor = result[0]["autor"].ToString();
-                this.Date = result[0]["date"].ToString();
-                this.Text = result[0]["text"].ToString();
+                for (int i = 0; i < result.ToString().Length; i++)
+                {
+                    
+                    this.News = result[i]["news"].ToString();
+                    this.Autor = result[i]["autor"].ToString();
+                    this.Date = result[i]["date"].ToString();
+                    this.Text = result[i]["text"].ToString();
+                    Console.WriteLine("param --------" + result[i]);
+
+                }
+
 
             }
             catch (Exception ex)
