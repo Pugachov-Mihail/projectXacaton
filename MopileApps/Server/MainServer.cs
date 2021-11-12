@@ -11,7 +11,6 @@ namespace MopileApps.Client
     ///const string Url = "http://127.0.0.1:8000/api/news/";
     public class MainServer: INotifyPropertyChanged
     {
-        // Комментарий для тестирования git (сделала Алёна)
         private int id;
         private string title;
         private string news;
@@ -89,19 +88,21 @@ namespace MopileApps.Client
                 //var handler = new HttpClientHandler();
                 HttpClient client = new HttpClient();
                 //client.BaseAddress = new Uri(url);
-                string response = await client.GetStringAsync(url);
-                var result = JToken.Parse(response);
-                string rateInfo = result[0].ToString();
-                //var rateInfo = JsonConvert.DeserializeObject<ViewNews>(result.ToString());
-                Console.WriteLine(rateInfo);
-                //this.id = rateInfo;
+                while (true)
+                {
+                    string response = await client.GetStringAsync(url);
+                    var result = JToken.Parse(response);
+                    string rateInfo = result[0].ToString();
+                    //var rateInfo = JsonConvert.DeserializeObject<ViewNews>(result.ToString());
+                    Console.WriteLine(rateInfo);
+                    //this.id = rateInfo;
 
-                Console.WriteLine(this.title);
-                this.News = result[0]["news"].ToString();
-                this.Autor = result[0]["autor"].ToString();
-                this.Date = result[0]["date"].ToString();
-                this.Text = result[0]["text"].ToString();
-
+                    this.News = result[0]["news"].ToString();
+                    this.News = result[1]["news"].ToString();
+                    this.Autor = result[0]["autor"].ToString();
+                    this.Date = result[0]["date"].ToString();
+                    this.Text = result[0]["text"].ToString();
+                }
             }
             catch (Exception ex)
             { Console.WriteLine(ex); }
