@@ -94,7 +94,7 @@ namespace MopileApps.Client
 
                 for (int i = 0; i < result.ToString().Length; i++)
                 {
-                    
+             
                     this.News = result[i]["news"].ToString();
                     this.Autor = result[i]["autor"].ToString();
                     this.Date = result[i]["date"].ToString();

@@ -12,7 +12,10 @@ namespace MopileApps
         {
             InitializeComponent();
             //
-            MainServer viewModel = new MainServer();
+            MainServer viewModel = new MainServer()
+            {
+
+            };
             viewModel.LoadData();
             this.BindingContext = viewModel;
 
