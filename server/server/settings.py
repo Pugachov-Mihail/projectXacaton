@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0=*ty^9j0y)xs3w2z9c5!77-+p524#qq-&q)rrj28l%xa5wgi)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["f972-185-34-240-5.ngrok.io"]
+ALLOWED_HOSTS = ["28e7-185-34-240-5.ngrok.io"]
 
 
 # Application definition
@@ -37,12 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework',
     'ckeditor',
     'ckeditor_uploader',
     "corsheaders",
     'news',
     'review',
+
 ]
 
 MIDDLEWARE = [
@@ -56,6 +58,8 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
+
+
 
 ROOT_URLCONF = 'server.urls'
 
