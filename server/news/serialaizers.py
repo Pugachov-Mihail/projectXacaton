@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from review.models import  Review
+from review.models import Review
 from .models import News
 
 
@@ -14,9 +14,14 @@ class ReviewCreateSerializers(serializers.ModelSerializer):
 
 class NewsListSerializers(serializers.ModelSerializer):
     '''Список новостей '''
-
-   # review = ReviewCreateSerializers(many=True)
-
+    review = ReviewCreateSerializers(many=True)
     class Meta:
         model = News
-        fields = ('id', 'title','autor', 'news', 'text', 'date')
+        fields = "__all__"
+
+
+class NewsCreateSerializers(serializers.ModelSerializer):
+    '''Список новостей '''
+    class Meta:
+        model = News
+        fields = "__all__"
