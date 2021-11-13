@@ -81,7 +81,8 @@ namespace MopileApps.Client
 
         public async void LoadData()
         {
-            string url = "https://f972-185-34-240-5.ngrok.io/api/news/";
+            string api = "/api/news/";
+            string url = "https://f972-185-34-240-5.ngrok.io" + api;
 
             try
             {
