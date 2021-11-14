@@ -5,7 +5,10 @@
              x:Class="MopileApps.MainPage">
 
     <StackLayout>
-        <Label FontSize="24" FontAttributes="Bold" Text="{Binding Title}" />
+        <Label FontSize="24" FontAttributes="Bold" Text="{Binding NewTitle[0]}" />
+        <Label FontSize="24" FontAttributes="Bold" Text="{Binding Autor}" />
+        <Label FontSize="24" FontAttributes="Bold" Text="{Binding Date}" />
+        <Label FontSize="24" FontAttributes="Bold" Text="{Binding NewTitle[1]}" />
         <Label FontSize="24" FontAttributes="Bold" Text="{Binding Autor}" />
         <Label FontSize="24" FontAttributes="Bold" Text="{Binding Date}" />
     </StackLayout>

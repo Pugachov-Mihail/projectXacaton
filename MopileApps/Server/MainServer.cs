@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Net.Http;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace MopileApps.Client
 {
@@ -17,6 +18,17 @@ namespace MopileApps.Client
         private string autor;
         private string date;
         private string text;
+
+        private List<string> newTitle;
+        public List<string> NewTitle
+        {
+            get { return newTitle; }
+            private set
+            {
+                newTitle = value;
+                OnPropertyChanged("NewTitle");
+            }
+        }
 
         public int Id
         {
@@ -82,8 +94,9 @@ namespace MopileApps.Client
         public async void LoadData()
         {
             string api = "/api/news/";
-            string url = "https://28e7-185-34-240-5.ngrok.io" + api;
 
+            string url = "https://b697-185-34-240-5.ngrok.io" + api;
+ 
             try
             {
 
@@ -102,6 +115,7 @@ namespace MopileApps.Client
                     this.Autor = result[i]["autor"].ToString();
                     this.Date = result[i]["date"].ToString();
                     this.Text = result[i]["text"].ToString();
+                    newTitle.Add(Title);
                     Console.WriteLine("param --------" + result[i]);
 
                 }
