@@ -1,9 +1,13 @@
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import CreateAPIView
 
 from review.models import Review
+#from profileUser.models import UserProfil, UserFollowing
+
 from .models import News
-from .serialaizers import NewsListSerializers, NewsCreateSerializers ,ReviewCreateSerializers
+from .serialaizers import NewsListSerializers, NewsCreateSerializers ,ReviewCreateSerializers #, UserFollowingerSerializers, UsersProfilSerializers, CreateUserSerializers
 
 # Create your views here.
 
@@ -31,4 +35,21 @@ class ReviewCreateView(APIView):
         review = ReviewCreateSerializers(data=request.data)
         if review.is_valid():
             review.save()
-        return Response(status=201)
+            return Response(status=201)
+        else:
+            return Response(review.errors)
+'''
+class CreateUser(CreateAPIView):
+    queryset = UserProfil.objects.all()
+    serializer_class = CreateUserSerializers
+    permission_classes = [AllowAny]
+
+    def post(self, request, *args, **kwargs):
+        serializer = CreateUserSerializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(status=201)
+
+        else:
+            return Response(serializer.errors)'''
