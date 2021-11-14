@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 
 from review.models import Review
 from .models import News
-from .serialaizers import NewsListSerializers, ReviewCreateSerializers
+from .serialaizers import NewsListSerializers, NewsCreateSerializers ,ReviewCreateSerializers
 
 # Create your views here.
 
@@ -12,9 +12,17 @@ class NewsListView(APIView):
 
     def get(self, request):
         news = News.objects.all()
-        serializer = NewsListSerializers(news, many=True)
+        serializerNews = NewsListSerializers(news, many=True)
 
-        return Response(serializer.data)
+        return Response(serializerNews.data)
+
+class NewsListCreate(APIView):
+    def post(self, request):
+        serilazerNews = NewsCreateSerializers(data=request.data)
+        if serilazerNews.is_valid():
+            serilazerNews.save()
+        return Response(status=201)
+
 
 
 class ReviewCreateView(APIView):
