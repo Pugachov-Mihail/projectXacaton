@@ -35,8 +35,4 @@
       <DependentUpon>.gitignore</DependentUpon>
     </Compile>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="News page\" />
-  </ItemGroup>
 </Project>

@@ -7,6 +7,9 @@ from review.models import Review
 from news.models import News
 # Create your models here.
 
+class UserModel(User):
+    pass
+
 class UserProfil(models.Model):
     user = models.OneToOneField(User, models.CASCADE)
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name="UserReview")
