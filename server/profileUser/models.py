@@ -1,29 +1,21 @@
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
 
 from review.models import Review
 from news.models import News
 # Create your models here.
 
-class UserModel(User):
+class UserModel(AbstractBaseUser):
     pass
 
+
+
 class UserProfil(models.Model):
-    user = models.OneToOneField(User, models.CASCADE)
+    user = models.OneToOneField(UserModel, models.CASCADE)
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name="UserReview")
     news = models.ForeignKey(News, on_delete=models.CASCADE, related_name="UserNews")
-
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            UserProfil.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
-
 
 
 class UserFollowing(models.Model):

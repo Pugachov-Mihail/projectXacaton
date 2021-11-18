@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0=*ty^9j0y)xs3w2z9c5!77-+p524#qq-&q)rrj28l%xa5wgi)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["acf5-185-34-240-5.ngrok.io"]
+ALLOWED_HOSTS = ["7499-185-34-240-5.ngrok.io"]
 
 
 # Application definition
@@ -40,10 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'rest_framework',
+    'rest_framework.authtoken',
     "corsheaders",
     'news',
     'review',
-   # 'profileUser',
+    'profileUser',
 ]
 
 MIDDLEWARE = [

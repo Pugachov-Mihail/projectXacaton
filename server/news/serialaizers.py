@@ -1,9 +1,8 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from review.models import Review
 from .models import News
-# from profileUser.models import UserProfil, UserFollowing
+from profileUser.models import UserProfil, UserFollowing, UserModel
 
 
 class ReviewCreateSerializers(serializers.ModelSerializer):
@@ -28,11 +27,11 @@ class NewsCreateSerializers(serializers.ModelSerializer):
         model = News
         fields = "__all__"
 
-'''
+
 class CreateUserSerializers(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['email', 'username', 'password']
+        model = UserModel
+        fields = "__all__"
 
 
 class UsersProfilSerializers(serializers.ModelSerializer):
@@ -43,4 +42,4 @@ class UsersProfilSerializers(serializers.ModelSerializer):
 class UserFollowingerSerializers(serializers.ModelSerializer):
     class Meta:
         model = UserFollowing
-        fields = "_all__"'''
+        fields = "_all__"
