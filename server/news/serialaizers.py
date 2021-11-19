@@ -29,10 +29,26 @@ class NewsCreateSerializers(serializers.ModelSerializer):
 
 
 class CreateUserSerializers(serializers.ModelSerializer):
+    password2 = serializers.CharField()
+    email = serializers.EmailField()
+    username = serializers.CharField()
+
     class Meta:
         model = UserModel
-        fields = "__all__"
+        fields = ['email', 'username', 'password', 'password2']
 
+    def save(self, **kwargs):
+        user = UserModel(
+            email=self.validated_data['email'],
+            username=self.validated_data['username']
+        )
+        password = self.validated_data['password']
+        password2 = self.validated_data['password2']
+        if password != password2:
+            raise serializers.ValidationError({password: "Пароли не совпадают"})
+        user.set_password(password)
+        user.save()
+        return user
 
 class UsersProfilSerializers(serializers.ModelSerializer):
     class Meta:

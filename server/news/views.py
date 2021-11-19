@@ -46,9 +46,10 @@ class CreateUser(CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = CreateUserSerializers(data=request.data)
+        data = {}
         if serializer.is_valid():
             serializer.save()
-
+            data['response'] = True
             return Response(status=201)
 
         else:
