@@ -1,8 +1,9 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from review.models import Review
 from .models import News
-from profileUser.models import UserProfil, UserFollowing, UserModel
+from profileUser.models import UserProfil, UserFollowing
 
 
 class ReviewCreateSerializers(serializers.ModelSerializer):
@@ -22,25 +23,29 @@ class NewsListSerializers(serializers.ModelSerializer):
 
 
 class NewsCreateSerializers(serializers.ModelSerializer):
-    '''Список новостей '''
+    '''Создание новости '''
     class Meta:
         model = News
         fields = "__all__"
 
 
 class CreateUserSerializers(serializers.ModelSerializer):
+    """Создание пользователя"""
     password2 = serializers.CharField()
     email = serializers.EmailField()
     username = serializers.CharField()
 
     class Meta:
-        model = UserModel
-        fields = ['email', 'username', 'password', 'password2']
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'username', 'password', 'password2']
 
     def save(self, **kwargs):
-        user = UserModel(
+        user = User(
             email=self.validated_data['email'],
-            username=self.validated_data['username']
+            username=self.validated_data['username'],
+            error_messages={
+                'unique': ("Данный пользователь уже есть"),
+            },
         )
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
@@ -51,11 +56,13 @@ class CreateUserSerializers(serializers.ModelSerializer):
         return user
 
 class UsersProfilSerializers(serializers.ModelSerializer):
+    """Новости и комментарии пользователя"""
     class Meta:
         model = UserProfil
         fields = "_all__"
 
 class UserFollowingerSerializers(serializers.ModelSerializer):
+    """Подписчики"""
     class Meta:
         model = UserFollowing
         fields = "_all__"

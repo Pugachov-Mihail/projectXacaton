@@ -1,10 +1,11 @@
+from django.contrib.auth.models import User
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView
 
 from review.models import Review
-from profileUser.models import UserProfil, UserFollowing, UserModel
+from profileUser.models import UserProfil, UserFollowing
 
 from .models import News
 from .serialaizers import NewsListSerializers, NewsCreateSerializers,ReviewCreateSerializers, UserFollowingerSerializers, UsersProfilSerializers, CreateUserSerializers
@@ -22,9 +23,13 @@ class NewsListView(APIView):
 
 class NewsListCreate(APIView):
     def post(self, request):
-        serilazerNews = NewsCreateSerializers(data=request.data)
+        serilazerNews = NewsCreateSerializers(data=request.data,
+                                              #autor=request.data.get('user_id')
+                                              )
         if serilazerNews.is_valid():
             serilazerNews.save()
+        else:
+            raise ValueError(serilazerNews.errors)
         return Response(status=201)
 
 
@@ -40,7 +45,7 @@ class ReviewCreateView(APIView):
             return Response(review.errors)
 
 class CreateUser(CreateAPIView):
-    queryset = UserModel.objects.all()
+    queryset = User.objects.all()
     serializer_class = CreateUserSerializers
     permission_classes = [AllowAny]
 

@@ -1,5 +1,6 @@
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -27,26 +28,13 @@ class UserManager(BaseUserManager):
 
 
 
-class UserModel(AbstractBaseUser):
-    username = models.CharField(max_length=50, unique=True)
-    email = models.EmailField(max_length=100, unique=True)
-
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ['username']
-    objects = UserManager()
-
-    def __str__(self):
-        return self.email
-
-
-
 class UserProfil(models.Model):
-    user = models.OneToOneField(UserModel, models.CASCADE)
+    user = models.OneToOneField(User, models.CASCADE)
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name="UserReview")
     news = models.ForeignKey(News, on_delete=models.CASCADE, related_name="UserNews")
 
 
 class UserFollowing(models.Model):
-    user_id = models.ForeignKey(UserProfil, on_delete=models.CASCADE, related_name="following")
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="following")
     following_user_id = models.ForeignKey(UserProfil, on_delete=models.CASCADE, related_name="followers")
     created = models.DateTimeField(auto_now_add=True)
