@@ -5,3 +5,4 @@ from review.models import Review
 
 
 admin.site.register(News)
+admin.site.register(Review)

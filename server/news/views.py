@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from rest_framework.permissions import AllowAny
+from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView
@@ -8,13 +8,14 @@ from review.models import Review
 from profileUser.models import UserProfil, UserFollowing
 
 from .models import News
-from .serialaizers import NewsListSerializers, NewsCreateSerializers,ReviewCreateSerializers, UserFollowingerSerializers, UsersProfilSerializers, CreateUserSerializers
+from .serialaizers import NewsListSerializers, NewsCreateSerializers,ReviewCreateSerializers,\
+    UserFollowingerSerializers, UsersProfilSerializers, CreateUserSerializers
 
 # Create your views here.
 
 class NewsListView(APIView):
     """Вывод списка новостей"""
-
+    permission_classes = [permissions.AllowAny]
     def get(self, request):
         news = News.objects.all()
         serializerNews = NewsListSerializers(news, many=True)
@@ -47,7 +48,7 @@ class ReviewCreateView(APIView):
 class CreateUser(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = CreateUserSerializers
-    permission_classes = [AllowAny]
+    permission_classes = [permissions.AllowAny]
 
     def post(self, request, *args, **kwargs):
         serializer = CreateUserSerializers(data=request.data)
@@ -59,3 +60,15 @@ class CreateUser(CreateAPIView):
 
         else:
             return Response(serializer.errors)
+
+
+class UsersProfilList(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, pk):
+        user = UserProfil.objects.all()
+        serialaizer = UsersProfilSerializers(user, many=True)
+
+        return Response(serialaizer.data)
+
+

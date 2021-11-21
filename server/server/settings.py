@@ -26,8 +26,9 @@ SECRET_KEY = 'django-insecure-0=*ty^9j0y)xs3w2z9c5!77-+p524#qq-&q)rrj28l%xa5wgi)
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["705e-185-34-240-5.ngrok.io",
-                    '127.0.0.1'
+ALLOWED_HOSTS = [
+    "2329-185-34-240-5.ngrok.io",
+    '127.0.0.1'
                   ]
 
 
@@ -35,12 +36,12 @@ ALLOWED_HOSTS = ["705e-185-34-240-5.ngrok.io",
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.auth',
     'rest_framework',
     'rest_framework.authtoken',
     "corsheaders",
@@ -49,6 +50,8 @@ INSTALLED_APPS = [
     'profileUser',
     "djoser",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,7 +81,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-APPEND_SLASH=False
+APPEND_SLASH=True
 
 TEMPLATES = [
     {
