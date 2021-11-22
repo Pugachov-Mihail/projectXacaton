@@ -2,7 +2,7 @@
 using MopileApps.Client;
 using Newtonsoft.Json.Linq;
 using System;
-
+using MopileApps.Server;
 
 namespace MopileApps
 {
@@ -14,21 +14,19 @@ namespace MopileApps
             InitializeComponent();
             //
 
-            
-            Server server = new Server();
-            server.GetRequest("/api/news/");
-            JToken a = server.ServerParse(server.response);
-            
-            ViewNews viewNews = new ViewNews();
-            for(int i=0; i<a.ToString().Length; i++)
-            {
-                viewNews.Title = a[0]["title"].ToString();
-            }
 
+            ServerFile server = new ServerFile();
+            ParserJson parser = new ParserJson();
+            server.GetRequest("/api/news/");
+
+            ViewNews viewNews = new ViewNews(){
+                
+            };
+            
             this.BindingContext = viewNews;
 
             Console.WriteLine("_______" + server.response);
-            Console.WriteLine("_______" + server.ServerParse(server.response));
+
         }
     }
 }
