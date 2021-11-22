@@ -14,14 +14,14 @@ namespace MopileApps.Server
         {
         }
 
-        public async Task<MopileApps.ViewNews> GetRequest(string api)
+        public async Task<ViewNews> GetRequest(string api)
         {
             string url = "https://18ce-185-34-240-5.ngrok.io" + api;
             try
             {
                 HttpClient client = new HttpClient();
                 this.response = await client.GetStringAsync(url);
-                return new MopileApps.ViewNews();
+                return new ViewNews();
             }
             catch (Exception ex)
             { Console.WriteLine(ex.Message); return null; }
