@@ -27,7 +27,7 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = [
-    "cb3e-185-34-240-5.ngrok.io",
+    "9f3f-185-34-240-5.ngrok.io",
     '127.0.0.1'
                   ]
 
@@ -135,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
