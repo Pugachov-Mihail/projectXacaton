@@ -63,13 +63,12 @@ namespace MobileApp.ViewModels
             }
         }
 
-        public List<Item> LoadedNews
+        public ICommand OpenWebCommand { get; }
+        public List<Item> LoadedNews()
         {
             Title = "About";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
+            
         }
-
-
-        public ICommand OpenWebCommand { get; }
     }
 }
