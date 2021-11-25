@@ -46,7 +46,7 @@ namespace MobileApp.ViewModels
                 var item = await DataStore.GetItemAsync(itemId);
                 Id = item.Id;
                 Text = item.Text;
-                Description = item.Description;
+                Description = item.Author;
             }
             catch (Exception)
             {

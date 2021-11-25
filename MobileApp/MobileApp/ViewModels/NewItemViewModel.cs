@@ -53,7 +53,7 @@ namespace MobileApp.ViewModels
             {
                 Id = Guid.NewGuid().ToString(),
                 Text = Text,
-                Description = Description
+                Author = Description
             };
 
             await DataStore.AddItemAsync(newItem);
