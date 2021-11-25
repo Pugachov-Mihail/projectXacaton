@@ -1,7 +1,8 @@
 ﻿using Xamarin.Forms;
 using MopileApps.Client;
+using Newtonsoft.Json.Linq;
 using System;
-
+using MopileApps.Server;
 
 namespace MopileApps
 {
@@ -12,14 +13,20 @@ namespace MopileApps
         {
             InitializeComponent();
             //
-            MainServer viewModel = new MainServer()
-            {
+
+
+            ServerFile server = new ServerFile();
+            ParserJson parser = new ParserJson();
+            server.GetRequest("/api/news/");
+
+            ViewNews viewNews = new ViewNews(){
                 
             };
-            viewModel.LoadData();
-            this.BindingContext = viewModel;
-
             
+            this.BindingContext = viewNews;
+
+            Console.WriteLine("_______" + server.response);
+
         }
     }
 }
