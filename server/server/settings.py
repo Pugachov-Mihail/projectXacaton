@@ -25,26 +25,33 @@ SECRET_KEY = 'django-insecure-0=*ty^9j0y)xs3w2z9c5!77-+p524#qq-&q)rrj28l%xa5wgi)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["b697-185-34-240-5.ngrok.io"]
+
+ALLOWED_HOSTS = [
+    "9f3f-185-34-240-5.ngrok.io",
+    '127.0.0.1'
+                  ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    "djoser",
     'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.auth',
     'rest_framework',
+    'rest_framework.authtoken',
     "corsheaders",
     'news',
     'review',
-   # 'profileUser',
+    'profileUser',
+    "djoser",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,11 +76,12 @@ DJOSER = {
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
 
+APPEND_SLASH=True
 
 TEMPLATES = [
     {

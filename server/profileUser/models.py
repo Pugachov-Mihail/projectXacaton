@@ -1,29 +1,40 @@
-from django.db import models
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+from django.db import models
+
 
 from review.models import Review
 from news.models import News
 # Create your models here.
+
+class UserManager(BaseUserManager):
+    def _create_user(self, email, username, password, **extra_fiels):
+        if not email:
+            raise ValueError("Не введен email")
+        if not username:
+            raise ValueError("Не введен логин")
+        user = self.model(
+            email=self.normalize_email(email),
+            username=username,
+            **extra_fiels,
+        )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, email, password, username):
+        return self._create_user(email, username, password)
+
+
 
 class UserProfil(models.Model):
     user = models.OneToOneField(User, models.CASCADE)
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name="UserReview")
     news = models.ForeignKey(News, on_delete=models.CASCADE, related_name="UserNews")
 
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            UserProfil.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
-
-
 
 class UserFollowing(models.Model):
-    user_id = models.ForeignKey(UserProfil, on_delete=models.CASCADE, related_name="following")
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="following")
     following_user_id = models.ForeignKey(UserProfil, on_delete=models.CASCADE, related_name="followers")
     created = models.DateTimeField(auto_now_add=True)
