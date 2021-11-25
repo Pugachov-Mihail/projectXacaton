@@ -1,8 +1,13 @@
-﻿using MobileApp.Models;
+using MobileApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http;
+using MobileApp.Models;
+using System.Diagnostics;
+using Newtonsoft.Json;
+
 
 namespace MobileApp.Services
 {
@@ -50,6 +55,24 @@ namespace MobileApp.Services
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
         {
+            Debug.WriteLine("STOP");
+            HttpClient client = new HttpClient();
+            string api = "api/news/";
+            string url = "https://cb3e-185-34-240-5.ngrok.io/";
+            Debug.WriteLine("STOP");
+            HttpResponseMessage response = await client.GetAsync(url + api);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                Item a = JsonConvert.DeserializeObject<Item>(content);
+                items.Add(a);
+            }
+            else
+            {
+                Debug.WriteLine($"not response.IsSuccessStatusCode {response}");
+                Item a = new Item { Id = "2", Text = "Second item", Author = "aut" };
+                items.Add(a);
+            }
             return await Task.FromResult(items);
         }
     }
