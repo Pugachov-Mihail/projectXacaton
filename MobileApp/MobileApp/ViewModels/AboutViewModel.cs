@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -9,18 +9,12 @@ using System.Threading.Tasks;
 using MobileApp.Models;
 using MobileApp.Services;
 
-using System.Windows.Input;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-
-
 namespace MobileApp.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
         public AboutViewModel()
         {
-
             Title = "Новости";
             OpenWebCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
@@ -64,11 +58,6 @@ namespace MobileApp.ViewModels
         }
 
         public List<Item> LoadedNews;
-
-            Title = "About";
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
-        }
-
 
         public ICommand OpenWebCommand { get; }
     }
