@@ -33,6 +33,7 @@
             -->
             <Style Class="FlyoutItemLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="FontSize" Value="Body"></Setter>
             </Style>
             <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -78,16 +79,42 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Title="About" Icon="icon_about.png">
-        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+    <Shell.FlyoutHeader>
+        <Grid ColumnDefinitions="4*,5*" HeightRequest="150">
+            <Label Text="Photo" Grid.Column="0" FontSize="Body" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                <Label Text="First Name" FontSize="Body" VerticalTextAlignment="Center"/>
+                <Label Text="Second Name" FontSize="Body" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+    <FlyoutItem Title="Новости">
+        <ShellContent Route="NewsFeedPage" ContentTemplate="{DataTemplate local:NewsFeedPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Browse" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+    <FlyoutItem Title="Базовые навыки">
+        <ShellContent Route="NewsFeedPage" ContentTemplate="{DataTemplate local:NewsFeedPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Мои статьи">
+        <ShellContent Route="MyNewsPage" ContentTemplate="{DataTemplate local:MyNewsPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Мои комментарии">
+        <ShellContent Route="NewsFeedPage" ContentTemplate="{DataTemplate local:NewsFeedPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Подписки">
+        <ShellContent Route="NewsFeedPage" ContentTemplate="{DataTemplate local:NewsFeedPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Подписчики">
+        <ShellContent Route="NewsFeedPage" ContentTemplate="{DataTemplate local:NewsFeedPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Войти">
+        <ShellContent Route="AuthPage" ContentTemplate="{DataTemplate local:AuthPage}" />
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
-    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+    
+    <!--<MenuItem Text="Вход" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>
+    -->
 
     <!--
         TabBar lets you define content that won't show up in a flyout menu. When this content is active
@@ -96,10 +123,11 @@
         content you can do so by calling 
         await Shell.Current.GoToAsync("//LoginPage");
     -->
+    <!--
     <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+        <ShellContent Route="AuthPage" ContentTemplate="{DataTemplate local:AuthPage}" />
     </TabBar>
-
+    -->
     <!-- Optional Templates 
     // These may be provided inline as below or as separate classes.
 

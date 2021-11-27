@@ -1,9 +1,11 @@
 ﻿using MobileApp.Models;
+using MobileApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace MobileApp.ViewModels
 {
@@ -55,11 +57,12 @@ namespace MobileApp.ViewModels
                 Text = Text,
                 Author = Description
             };
-
-            await DataStore.AddItemAsync(newItem);
-
+            Debug.WriteLine("Cont Save");
+            await Download.mds.AddItemAsync(newItem);
+            
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
+            Debug.WriteLine("End Save");
         }
     }
 }

@@ -1,12 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Вход"
+             xmlns:local="clr-namespace:MobileApp.ViewModels"  
+             xmlns:model="clr-namespace:MobileApp.Models" 
              x:Class="MobileApp.Views.AuthPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Frame Margin="30, 30, 30, 30">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition Height="100" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.Column="1" />
+                <Entry 
+                    Grid.ColumnSpan="2"
+                    WidthRequest="150"
+                    Placeholder="Логин"
+                    HorizontalOptions="Center"
+                    VerticalOptions="End" />
+                <BoxView Grid.Row="1"/>
+                <BoxView Grid.Row="2"/>
+                <Entry Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    WidthRequest="150"
+                    Placeholder="Пароль"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start" />
+                <BoxView Grid.Row="2"/>
+                <Button Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Text="вход"
+                    WidthRequest="130"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" 
+                    CornerRadius="10"/>
+                <BoxView Grid.Row="2"/>
+                <Button Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Text="Регистрация"
+                    WidthRequest="130"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Clicked="Button_Clicked"
+                    CornerRadius="10"/>
+                <BoxView Grid.Row="1"/>
+                <Label Grid.Row="4"
+                 Grid.ColumnSpan="2"   
+                    Text="Войти с помощью"
+                    HorizontalOptions="Center"
+                    VerticalOptions="End" />
+                <BoxView Grid.Row="2"/>
+
+                <Button Grid.Row="5"
+                    Grid.ColumnSpan="1"
+                    Text="ВК"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    CornerRadius="10"/>
+                <Button Grid.Row="5"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="1"
+                    Text="Google"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    CornerRadius="10"/>
+            </Grid>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

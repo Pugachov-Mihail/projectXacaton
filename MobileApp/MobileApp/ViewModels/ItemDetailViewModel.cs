@@ -1,4 +1,5 @@
 ﻿using MobileApp.Models;
+using MobileApp.Services;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -43,7 +44,7 @@ namespace MobileApp.ViewModels
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
+                var item = await Download.mds.GetItemAsync(itemId);
                 Id = item.Id;
                 Text = item.Text;
                 Description = item.Author;

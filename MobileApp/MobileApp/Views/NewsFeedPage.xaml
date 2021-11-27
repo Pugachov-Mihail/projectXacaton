@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.NewsFeedPage"
+             xmlns:local="clr-namespace:MobileApp.ViewModels"  
+             xmlns:model="clr-namespace:MobileApp.Models"  
+             Title="{Binding Title}">
+    
+    <ContentPage.BindingContext>
+        <local:NewsFeedViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <RefreshView x:DataType="local:NewsFeedViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <StackLayout>
+                <ScrollView Orientation="Horizontal" BackgroundColor="AliceBlue" HeightRequest="30" Padding="5">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="  Подписки " FontSize="18" FontAttributes="Bold"/>
+                    <Label Text=" Акции " FontSize="18"/>
+                    <Label Text=" Облигации " FontSize="18"/>
+                    <Label Text=" Валюта " FontSize="18"/>
+                    <Label Text=" Деривативы  " FontSize="18"/>
+                    </StackLayout>
+                </ScrollView>
+                <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="White" Padding="13">
+                                <Frame BorderColor="White" CornerRadius="10" Padding="0">
+                                    <Grid ColumnDefinitions="1.2*, 5*, 2*, 1*"  RowDefinitions="2*,1.5*, 1.5*,2.5*" HeightRequest="150" Padding="15" x:DataType="model:Item" BackgroundColor="AntiqueWhite">
+                                        <Label Text="{Binding Text}" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16"/>
+                                        <Label Text="Date" Grid.Row="1" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                        <Label Text="#Tegs" Grid.Row="2" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                        <Label Text="Star" Grid.Column="3" Grid.Row="0" FontSize="Body" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                        <Label Text="Photo" FontSize="13" Grid.Column="0" Grid.Row="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                        <StackLayout Grid.Column="1"  Grid.Row="3" VerticalOptions="Center" Orientation="Vertical">
+                                            <Label Text="First Name" FontSize="13"/>
+                                            <Label Text="Second Name" FontSize="13"/>
+                                        </StackLayout>
+                                        <Button Text="Читать" FontSize="10" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"/>
+                                    </Grid>
+                                </Frame>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </RefreshView>
+    </Grid>
+
+</ContentPage>
