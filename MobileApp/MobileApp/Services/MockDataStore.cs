@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MobileApp.Services
 {
@@ -15,7 +18,8 @@ namespace MobileApp.Services
 
         public HttpClient client = new HttpClient();
         public string api = "api/news/";
-        public string url = "https://452b-185-34-240-5.ngrok.io/";
+        public string url = "https://2fd7-185-34-240-5.ngrok.io/";
+        JsonSerializerOptions options = new JsonSerializerOptions();
 
         public MockDataStore()
         {
@@ -67,20 +71,31 @@ namespace MobileApp.Services
             return await Task.FromResult((true, user));
         }
 
+        public async Task<IEnumerable<Item>> GetPostsAsync(bool forceRefresh = false)
+        {
+            string result = await client.GetStringAsync(url + api);
+            Debug.WriteLine("No Начал парсить");
+            return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Item>>(result, options);
+        }
+
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
         {
-            HttpResponseMessage response = await client.GetAsync(url + api );
+            Debug.WriteLine("No Начал парсить");
+            /*HttpResponseMessage response = await client.GetAsync(url + api );
+            Debug.WriteLine("Коннекшн");
             if (response.IsSuccessStatusCode)
             {
+                Debug.WriteLine("Начал парсить");
                 string content = await response.Content.ReadAsStringAsync();
                 Item a = JsonConvert.DeserializeObject<Item>(content);
                 items.Add(a);
+                Debug.WriteLine("Закончить парсить");
             }
             else
             {
                 Debug.WriteLine($"not response.IsSuccessStatusCode {response}");
-            }
-            return await Task.FromResult(items);
+            }*/
+            return await GetPostsAsync();
         }
     }
 }

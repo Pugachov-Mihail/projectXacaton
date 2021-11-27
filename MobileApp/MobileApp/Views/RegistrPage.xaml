@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.RegistrPage"
+             Title="Регистрация">
+    <ContentPage.Content>
+        <Frame Margin="30, 30, 30, 30">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition Height="100" />
+                </Grid.RowDefinitions>
+                <Entry 
+                    WidthRequest="170"
+                    Placeholder="Почта"
+HorizontalOptions="Center"
+VerticalOptions="Center" />
+                <Entry Grid.Row="1"
+                    WidthRequest="170"
+                    Placeholder="Имя"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+                <Entry
+           Grid.Row="2"
+                    WidthRequest="170"
+                    Placeholder="Фамилия"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+
+                <Entry 
+                   Grid.Row="3"
+                    WidthRequest="170"
+                    Placeholder="Пароль"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+                <Entry 
+                   Grid.Row="4"
+                    WidthRequest="170"
+                    Placeholder="Повторите пароль"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+
+                <RadioButton Grid.Row="5"
+           Content="Показать пароль"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+
+                <Button Grid.Row="6"
+           Text="Зарегистрироваться"
+           HorizontalOptions="Center"
+           VerticalOptions="Center"
+                        
+                    CornerRadius="10"/>
+            </Grid>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

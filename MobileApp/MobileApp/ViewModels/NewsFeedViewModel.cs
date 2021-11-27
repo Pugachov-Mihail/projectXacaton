@@ -16,14 +16,12 @@ namespace MobileApp.ViewModels
     {
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
-        public Command NewCommand { get; }
 
         public NewsFeedViewModel()
         {
             Title = "Новости";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            NewCommand = new Command(async () => await NewTestCommand());
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -47,10 +45,6 @@ namespace MobileApp.ViewModels
             {
                 IsBusy = false;
             }
-        }
-
-        async Task NewTestCommand()
-        {
         }
     }
 }
