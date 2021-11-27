@@ -70,7 +70,16 @@ namespace MobileApp.Services
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
         {
+
             HttpResponseMessage response = await client.GetAsync(url + api );
+            Debug.WriteLine("STOP");
+            HttpClient client = new HttpClient();
+            string api = "api/news/";
+            string url = "https://cb3e-185-34-240-5.ngrok.io/";
+             
+            Debug.WriteLine("STOP");
+            HttpResponseMessage response = await client.GetAsync(url + api);
+          
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
