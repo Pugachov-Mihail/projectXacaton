@@ -15,7 +15,6 @@ namespace MobileApp.ViewModels
     {
         public AboutViewModel()
         {
-
             Title = "Новости";
             OpenWebCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }

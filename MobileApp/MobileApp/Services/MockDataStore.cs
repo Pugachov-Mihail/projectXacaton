@@ -10,9 +10,13 @@ using Newtonsoft.Json;
 
 namespace MobileApp.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public class MockDataStore 
     {
         readonly List<Item> items;
+
+        public HttpClient client = new HttpClient();
+        public string api = "api/news/";
+        public string url = "https://452b-185-34-240-5.ngrok.io/";
 
         public MockDataStore()
         {
@@ -23,7 +27,7 @@ namespace MobileApp.Services
             };
         }
 
-        public async Task<bool> AddItemAsync(Item item)
+        /*public async Task<bool> AddItemAsync(Item item)
         {
             items.Add(item);
 
@@ -50,10 +54,24 @@ namespace MobileApp.Services
         public async Task<Item> GetItemAsync(string id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+        }*/
+
+        public async Task<(bool, User)> GetUserAsync(string login, string password)
+        {
+            User user = new User();
+            HttpResponseMessage response = await client.GetAsync(url + api + "auth/token/login");
+            if (!response.IsSuccessStatusCode)
+                return await Task.FromResult((true, user));
+
+            string content = await response.Content.ReadAsStringAsync();
+            Item a = JsonConvert.DeserializeObject<Item>(content);
+            return await Task.FromResult((true, user));
         }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
         {
+
+            HttpResponseMessage response = await client.GetAsync(url + api );
             Debug.WriteLine("STOP");
             HttpClient client = new HttpClient();
             string api = "api/news/";
