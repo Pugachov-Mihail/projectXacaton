@@ -47,7 +47,7 @@ class ReviewCreateView(APIView):
             return Response(review.errors)
 
 class CreateUser(CreateAPIView):
-    queryset = User.objects.all()
+    queryset = UserProfil.objects.all()
     serializer_class = CreateUserSerializers
     permission_classes = [permissions.AllowAny]
 
@@ -64,10 +64,11 @@ class CreateUser(CreateAPIView):
 
 
 class UsersProfilList(APIView):
+    """Личный кабинет"""
     permission_classes = [permissions.AllowAny]
 
     def get(self, pk):
-        user = UserProfil.objects.all()
+        user = UserProfil.objects.filter(news=User.pk)
         serialaizer = UsersProfilSerializers(user, many=True)
 
         return Response(serialaizer.data)

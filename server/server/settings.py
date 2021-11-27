@@ -27,9 +27,10 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = [
-    "78e6-185-34-240-5.ngrok.io",
+    "d8af-185-34-240-5.ngrok.io",
     '127.0.0.1'
                   ]
+
 
 
 # Application definition
@@ -72,6 +73,7 @@ ROOT_URLCONF = 'server.urls'
 DJOSER = {
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': False,
+    'LOGIN_FIELD': 'profileUser.UserProfil',
 }
 
 REST_FRAMEWORK = {
@@ -131,11 +133,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'profileUser.UserProfil'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 

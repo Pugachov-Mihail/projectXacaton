@@ -10,5 +10,5 @@ urlpatterns = [
     path('create_news/', NewsListCreate.as_view()),
     path('create_review/', ReviewCreateView.as_view()),
     path('register/', CreateUser.as_view()),
-    path('profil/', UsersProfilList.as_view())
+    path('profil/<int:pk>', UsersProfilList.as_view())
 ]
