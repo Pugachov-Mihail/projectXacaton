@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 
-from .views import NewsListView, NewsListCreate, ReviewCreateView, CreateUser, UsersProfilList, Users
+from .views import NewsListView, NewsListCreate, ReviewCreateView, CreateUser, UsersProfilList, NewsPage
 
 
 
@@ -11,5 +11,5 @@ urlpatterns = [
     path('create_review/', ReviewCreateView.as_view()),
     path('register/', CreateUser.as_view()),
     path('profil/', UsersProfilList.as_view()),
-    path('n/<int:pk>/', Users.as_view())
+    path('news/<int:pk>/', NewsPage.as_view())
 ]

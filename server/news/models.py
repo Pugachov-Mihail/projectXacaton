@@ -16,7 +16,7 @@ class News(models.Model):
         return self.title
 
     class Meta:
-        pass
+        ordering = ['-date']
 
 
 

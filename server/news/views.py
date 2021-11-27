@@ -22,12 +22,22 @@ class NewsListView(APIView):
 
         return Response(serializerNews.data)
 
+class NewsPage(APIView):
+    permission_classes = [permissions.AllowAny]
+    def get(self, pk):
+        try:
+            news = News.objects.filter(pk=pk)
+
+        except:
+            news = None
+        serializer = NewsListSerializers(news, many=True)
+        return Response(serializer.data)
+
+
 class NewsListCreate(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def post(self, request):
-        serilazerNews = NewsCreateSerializers(data=request.data,
-                                              #autor=request.data.get('user_id')
-                                              )
+        serilazerNews = NewsCreateSerializers(data=request.data)
         if serilazerNews.is_valid():
             serilazerNews.save()
         else:
@@ -74,11 +84,3 @@ class UsersProfilList(APIView):
         return Response(serialaizer.data)
 
 
-class Users(APIView):
-    permission_classes = [permissions.AllowAny]
-
-    def get(self, pk):
-        print(pk)
-        user = User.objects.get(user_pk=pk)
-        ser =UsersSeri(user, many=True)
-        return Response(ser.data)
