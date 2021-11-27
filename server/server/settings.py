@@ -73,7 +73,9 @@ ROOT_URLCONF = 'server.urls'
 DJOSER = {
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': False,
-    'LOGIN_FIELD': 'profileUser.UserProfil',
+    'SERIALIZERS': {
+    'LOGIN_FIELD': 'UserProfil.USERNAME_FIELD',
+    }
 }
 
 REST_FRAMEWORK = {

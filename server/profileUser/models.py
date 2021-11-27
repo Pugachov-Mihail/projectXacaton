@@ -33,6 +33,9 @@ class UserProfil(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name="UserReview")
     news = models.ForeignKey(News, on_delete=models.CASCADE, related_name="UserNews")
 
+    class Meta(User.Meta):
+        pass
+
 
 class UserFollowing(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="following")
