@@ -30,8 +30,8 @@ class UserManager(BaseUserManager):
 
 class UserProfil(models.Model):
     user = models.OneToOneField(User, models.CASCADE)
-    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name="UserReview")
-    news = models.ForeignKey(News, on_delete=models.CASCADE, related_name="UserNews")
+    review = models.ForeignKey(Review, blank=True, null=True, on_delete=models.CASCADE, related_name="UserReview")
+    news = models.ForeignKey(News, on_delete=models.CASCADE,blank=True, null=True, related_name="UserNews")
 
 
 class UserFollowing(models.Model):
