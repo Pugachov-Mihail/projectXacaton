@@ -1,5 +1,6 @@
 ﻿using MobileApp.Models;
 using MobileApp.Views;
+using MobileApp.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -8,7 +9,7 @@ using Xamarin.Forms;
 
 namespace MobileApp.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class MyNewsViewModel : BaseViewModel
     {
         private Item _selectedItem;
 
@@ -17,7 +18,7 @@ namespace MobileApp.ViewModels
         public Command AddItemCommand { get; }
         public Command<Item> ItemTapped { get; }
 
-        public ItemsViewModel()
+        public MyNewsViewModel()
         {
             Title = "Browse";
             Items = new ObservableCollection<Item>();
@@ -35,7 +36,7 @@ namespace MobileApp.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await Download.mds.GetItemsAsync(true);
                 foreach (var item in items)
                 {
                     Items.Add(item);

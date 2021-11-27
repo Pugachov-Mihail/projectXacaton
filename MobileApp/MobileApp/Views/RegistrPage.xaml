@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.RegistrPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Text="Логин"
+HorizontalOptions="Center"
+VerticalOptions="Center" />
+            <BoxView Grid.Column="1" />
+            <Entry Grid.Column="1"
+Text=" "
+HorizontalOptions="Center"
+VerticalOptions="Center" />
+            <Label Grid.Row="1"
+           Text="Почта"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+            <BoxView Grid.Column="2"/>
+            <Entry Grid.Row="1"
+           Grid.Column="1"
+           Text="                        "
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+
+
+            <Label Grid.Row="2" 
+            Text="Имя"       
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+            <BoxView Grid.Column="1" />
+            <Entry Grid.Column="1"
+           Grid.Row="2"
+           Text="              "
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+
+
+            <Label Grid.Row="3" 
+                Text="Пароль"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+            <BoxView Grid.Column="0" />
+            <Entry Grid.Column="1"
+                   Grid.Row="3"
+           Text="               "
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+            <Label Grid.Row="4" 
+                Text="Повторить пароль"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+            <BoxView Grid.Column="0" />
+            <Entry Grid.Column="1"
+                   Grid.Row="4"
+           Text="               "
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+
+            <RadioButton Grid.Row="5"
+           Grid.ColumnSpan="2"
+           Content="Показать пароль"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+            <BoxView Grid.Column="3" />
+
+            <Button Grid.Row="6"
+           Grid.ColumnSpan="2"
+           Text="Зарегист рироваться"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+            <BoxView Grid.Column="2" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

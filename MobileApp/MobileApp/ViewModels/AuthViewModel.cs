@@ -8,11 +8,13 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using MobileApp.Models;
 using MobileApp.Services;
+using MobileApp.Views;
 
 namespace MobileApp.ViewModels
 {
-    class AuthViewModel
+    class AuthViewModel : BaseViewModel
     {
+
         public AuthViewModel()
         {
             TryAuthCommand = new Command(async () => await AuthCommand());
@@ -24,8 +26,7 @@ namespace MobileApp.ViewModels
             User user;
             try
             {
-                var mds = new MockDataStore();
-                (isSuccessAuth, user) = await mds.GetUserAsync(Login, Password);
+                (isSuccessAuth, user) = await Download.mds.GetUserAsync(Login, Password);
             }
             catch (Exception ex)
             {

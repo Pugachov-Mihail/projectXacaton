@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
-using MobileApp.Models;
 using System.Diagnostics;
 using Newtonsoft.Json;
 
@@ -27,10 +26,10 @@ namespace MobileApp.Services
             };
         }
 
-        /*public async Task<bool> AddItemAsync(Item item)
+        public async Task<bool> AddItemAsync(Item item)
         {
             items.Add(item);
-
+            Debug.WriteLine("itemadded");
             return await Task.FromResult(true);
         }
 
@@ -54,7 +53,7 @@ namespace MobileApp.Services
         public async Task<Item> GetItemAsync(string id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
-        }*/
+        }
 
         public async Task<(bool, User)> GetUserAsync(string login, string password)
         {
@@ -80,8 +79,6 @@ namespace MobileApp.Services
             else
             {
                 Debug.WriteLine($"not response.IsSuccessStatusCode {response}");
-                Item a = new Item { Id = "2", Text = "Second item", Author = "aut" };
-                items.Add(a);
             }
             return await Task.FromResult(items);
         }
