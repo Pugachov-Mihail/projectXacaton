@@ -23,11 +23,7 @@ namespace MobileApp.Services
 
         public MockDataStore()
         {
-            items = new List<Item>()
-            {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Author="This is an item description." },
-            
-            };
+            items = new List<Item>();
         }
 
         public async Task<bool> AddItemAsync(Item item)
@@ -39,8 +35,8 @@ namespace MobileApp.Services
 
         public async Task<bool> UpdateItemAsync(Item item)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
+            //var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
+            //items.Remove(oldItem);
             items.Add(item);
 
             return await Task.FromResult(true);
@@ -48,15 +44,15 @@ namespace MobileApp.Services
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
+            //var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+            //items.Remove(oldItem);
 
             return await Task.FromResult(true);
         }
 
         public async Task<Item> GetItemAsync(string id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(items[0]);
         }
 
         public async Task<(bool, User)> GetUserAsync(string login, string password)
@@ -74,7 +70,8 @@ namespace MobileApp.Services
         public async Task<IEnumerable<Item>> GetPostsAsync(bool forceRefresh = false)
         {
             string result = await client.GetStringAsync(url + api);
-            Debug.WriteLine("No Начал парсить");
+            Debug.WriteLine($"Начал парсить {result}");
+            result= "[{\"Title\":\"test\",\"News\":null,\"Text\":\"test\",\"Date\":\"2021-11-27\",\"Publication\":false}, {\"Title\":\"SecondTitle\",\"News\":null,\"Text\":\"test\",\"Date\":\"2021-11-27\",\"Publication\":true}]";
             return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Item>>(result, options);
         }
 

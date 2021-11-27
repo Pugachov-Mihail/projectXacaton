@@ -36,7 +36,7 @@
                             <Frame BorderColor="White" Padding="13">
                                 <Frame BorderColor="White" CornerRadius="10" Padding="0">
                                     <Grid ColumnDefinitions="1.2*, 5*, 2*, 1*"  RowDefinitions="2*,1.5*, 1.5*,2.5*" HeightRequest="150" Padding="15" x:DataType="model:Item" BackgroundColor="AntiqueWhite">
-                                        <Label Text="{Binding Text}" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16"/>
+                                        <Label Text="{Binding Title}" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16"/>
                                         <Label Text="Date" Grid.Row="1" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
                                         <Label Text="#Tegs" Grid.Row="2" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
                                         <Label Text="Star" Grid.Column="3" Grid.Row="0" FontSize="Body" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>

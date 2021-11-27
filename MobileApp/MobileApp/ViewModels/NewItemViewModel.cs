@@ -53,9 +53,8 @@ namespace MobileApp.ViewModels
         {
             Item newItem = new Item()
             {
-                Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Author = Description
+                Title = Text,
+                Text = Description
             };
             Debug.WriteLine("Cont Save");
             await Download.mds.AddItemAsync(newItem);

@@ -45,9 +45,9 @@ namespace MobileApp.ViewModels
             try
             {
                 var item = await Download.mds.GetItemAsync(itemId);
-                Id = item.Id;
+                //Id = item.Id;
                 Text = item.Text;
-                Description = item.Author;
+                //Description = item.Author;
             }
             catch (Exception)
             {

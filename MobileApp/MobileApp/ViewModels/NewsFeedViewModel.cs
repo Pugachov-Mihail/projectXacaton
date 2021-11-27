@@ -34,6 +34,7 @@ namespace MobileApp.ViewModels
                 var items = await Download.mds.GetItemsAsync(true);
                 foreach (var item in items)
                 {
+                    Debug.WriteLine($"{item.Title}, {item.Publication}");
                     Items.Add(item);
                 }
             }
