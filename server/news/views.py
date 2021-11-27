@@ -9,7 +9,7 @@ from profileUser.models import UserProfil, UserFollowing
 
 from .models import News
 from .serialaizers import NewsListSerializers, NewsCreateSerializers,ReviewCreateSerializers,\
-    UserFollowingerSerializers, UsersProfilSerializers, CreateUserSerializers
+    UserFollowingerSerializers, UsersProfilSerializers, CreateUserSerializers, UsersSeri
 
 # Create your views here.
 
@@ -64,6 +64,7 @@ class CreateUser(CreateAPIView):
 
 
 class UsersProfilList(APIView):
+    """Отображение профиля пользователя"""
     permission_classes = [permissions.AllowAny]
 
     def get(self, pk):
@@ -73,3 +74,11 @@ class UsersProfilList(APIView):
         return Response(serialaizer.data)
 
 
+class Users(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, pk):
+        print(pk)
+        user = User.objects.get(user_pk=pk)
+        ser =UsersSeri(user, many=True)
+        return Response(ser.data)

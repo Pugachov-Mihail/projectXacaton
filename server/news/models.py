@@ -12,5 +12,11 @@ class News(models.Model):
     date = models.DateField(auto_now_add=True)
     publication = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        pass
+
 
 
