@@ -69,9 +69,8 @@ namespace MobileApp.Services
 
         public async Task<IEnumerable<Item>> GetPostsAsync(bool forceRefresh = false)
         {
-            string result = await client.GetStringAsync(url + api);
-            Debug.WriteLine($"Начал парсить {result}");
-            result= "[{\"Title\":\"test\",\"News\":null,\"Text\":\"test\",\"Date\":\"2021-11-27\",\"Publication\":false}, {\"Title\":\"SecondTitle\",\"News\":null,\"Text\":\"test\",\"Date\":\"2021-11-27\",\"Publication\":true}]";
+            //string result = await client.GetStringAsync(url + api);
+            string result= "[{\"Title\":\"test\",\"News\":null,\"Text\":\"test\",\"Date\":\"2021-11-27\",\"Publication\":false}, {\"Title\":\"SecondTitle\",\"News\":null,\"Text\":\"test\",\"Date\":\"2021-11-27\",\"Publication\":true}]";
             return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Item>>(result, options);
         }
 

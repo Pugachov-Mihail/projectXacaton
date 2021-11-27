@@ -7,7 +7,8 @@
              Title="Вход"
              xmlns:local="clr-namespace:MobileApp.ViewModels"  
              xmlns:model="clr-namespace:MobileApp.Models" 
-             x:Class="MobileApp.Views.AuthPage">
+             x:Class="MobileApp.Views.AuthPage"
+             BackgroundColor="#F0F4F7">
     <ContentPage.Content>
         <Frame Margin="30, 30, 30, 30">
             <Grid>

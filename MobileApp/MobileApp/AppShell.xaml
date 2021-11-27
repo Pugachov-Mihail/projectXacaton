@@ -81,7 +81,7 @@
     -->
     <Shell.FlyoutHeader>
         <Grid ColumnDefinitions="4*,5*" HeightRequest="150">
-            <Label Text="Photo" Grid.Column="0" FontSize="Body" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+            <Image Source="icon_avatar.png" VerticalOptions="Center" Margin="15"/>
             <StackLayout Grid.Column="1" VerticalOptions="Center">
                 <Label Text="First Name" FontSize="Body" VerticalTextAlignment="Center"/>
                 <Label Text="Second Name" FontSize="Body" VerticalTextAlignment="Center"/>

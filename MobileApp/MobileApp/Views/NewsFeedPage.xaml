@@ -4,7 +4,8 @@
              x:Class="MobileApp.Views.NewsFeedPage"
              xmlns:local="clr-namespace:MobileApp.ViewModels"  
              xmlns:model="clr-namespace:MobileApp.Models"  
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             >
     
     <ContentPage.BindingContext>
         <local:NewsFeedViewModel />
@@ -16,10 +17,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid>
+    <Grid BackgroundColor="#F0F4F7">
         <RefreshView x:DataType="local:NewsFeedViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <StackLayout>
-                <ScrollView Orientation="Horizontal" BackgroundColor="AliceBlue" HeightRequest="30" Padding="5">
+                <ScrollView Orientation="Horizontal" BackgroundColor="White" HeightRequest="30" Padding="5">
                     <StackLayout Orientation="Horizontal">
                         <Label Text="  Подписки " FontSize="18" FontAttributes="Bold"/>
                     <Label Text=" Акции " FontSize="18"/>
@@ -30,22 +31,23 @@
                 </ScrollView>
                 <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
-                SelectionMode="None">
+                SelectionMode="None"
+                BackgroundColor="#F0F4F7">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BorderColor="White" Padding="13">
-                                <Frame BorderColor="White" CornerRadius="10" Padding="0">
-                                    <Grid ColumnDefinitions="1.2*, 5*, 2*, 1*"  RowDefinitions="2*,1.5*, 1.5*,2.5*" HeightRequest="150" Padding="15" x:DataType="model:Item" BackgroundColor="AntiqueWhite">
-                                        <Label Text="{Binding Title}" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16"/>
+                            <Frame BorderColor="#F0F4F7" Padding="13" BackgroundColor="#F0F4F7">
+                                <Frame BorderColor="#F0F4F7" CornerRadius="10" Padding="0">
+                                    <Grid ColumnDefinitions="1.2*, 5*, 2*, 1*"  RowDefinitions="2*,1.5*, 1.5*,2.5*" HeightRequest="150" Padding="15" x:DataType="model:Item" BackgroundColor="#FFFFFF">
+                                        <Label Text="{Binding Title}" Grid.ColumnSpan="3" LineBreakMode="NoWrap" VerticalTextAlignment="Center" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16"/>
                                         <Label Text="Date" Grid.Row="1" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
                                         <Label Text="#Tegs" Grid.Row="2" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
-                                        <Label Text="Star" Grid.Column="3" Grid.Row="0" FontSize="Body" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                        <Label Text="Photo" FontSize="13" Grid.Column="0" Grid.Row="3" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                                        <StackLayout Grid.Column="1"  Grid.Row="3" VerticalOptions="Center" Orientation="Vertical">
+                                        <Image Source="icon_star.png" Grid.Column="3" Grid.Row="0" VerticalOptions="Center"/>
+                                        <Image Source="icon_avatar.png" Grid.Column="0" Grid.Row="3" VerticalOptions="Center"/>
+                                        <StackLayout Grid.Column="1"  Grid.Row="3" VerticalOptions="Center" Orientation="Vertical" Margin="5, 0, 0, 0">
                                             <Label Text="First Name" FontSize="13"/>
                                             <Label Text="Second Name" FontSize="13"/>
                                         </StackLayout>
-                                        <Button Text="Читать" FontSize="10" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"/>
+                                        <Button Text="Читать" FontSize="Body" CornerRadius="10" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"/>
                                     </Grid>
                                 </Frame>
                             </Frame>
