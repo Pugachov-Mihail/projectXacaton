@@ -23,7 +23,6 @@ class NewsListView(APIView):
         return Response(serializerNews.data)
 
 class NewsListCreate(APIView):
-    permission_classes = [permissions.IsAuthenticated]
     def post(self, request):
         serilazerNews = NewsCreateSerializers(data=request.data,
                                               #autor=request.data.get('user_id')
