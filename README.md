@@ -1,1 +1,2 @@
-Архитектура: Клиент на C# Xamarin Forms, сервер Python Django, база данных
+Архитектура: 
+-Клиент на C# Xamarin Forms, сервер Python Django, база данных
