@@ -83,8 +83,8 @@
         <Grid ColumnDefinitions="4*,5*" HeightRequest="150">
             <Image Source="icon_avatar.png" VerticalOptions="Center" Margin="15"/>
             <StackLayout Grid.Column="1" VerticalOptions="Center">
-                <Label Text="First Name" FontSize="Body" VerticalTextAlignment="Center"/>
-                <Label Text="Second Name" FontSize="Body" VerticalTextAlignment="Center"/>
+                <Label Text="FirstName" TextColor="#818990" FontSize="Body" VerticalTextAlignment="Center"/>
+                <Label Text="Second Name" TextColor="#818990" FontSize="Body" VerticalTextAlignment="Center"/>
             </StackLayout>
         </Grid>
     </Shell.FlyoutHeader>
@@ -92,24 +92,32 @@
         <ShellContent Route="NewsFeedPage" ContentTemplate="{DataTemplate local:NewsFeedPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Базовые навыки">
-        <ShellContent Route="NewsFeedPage" ContentTemplate="{DataTemplate local:NewsFeedPage}" />
+        <ShellContent Route="NoContentPage" ContentTemplate="{DataTemplate local:NoContentPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Мои статьи">
         <ShellContent Route="MyNewsPage" ContentTemplate="{DataTemplate local:MyNewsPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Мои комментарии">
-        <ShellContent Route="NewsFeedPage" ContentTemplate="{DataTemplate local:NewsFeedPage}" />
+        <ShellContent Route="NoContentPage" ContentTemplate="{DataTemplate local:NoContentPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Подписки">
-        <ShellContent Route="NewsFeedPage" ContentTemplate="{DataTemplate local:NewsFeedPage}" />
+        <ShellContent Route="NoContentPage" ContentTemplate="{DataTemplate local:NoContentPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Подписчики">
-        <ShellContent Route="NewsFeedPage" ContentTemplate="{DataTemplate local:NewsFeedPage}" />
+        <ShellContent Route="NoContentPage" ContentTemplate="{DataTemplate local:NoContentPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Войти">
         <ShellContent Route="AuthPage" ContentTemplate="{DataTemplate local:AuthPage}" />
     </FlyoutItem>
-
+    <Shell.FlyoutFooter>
+        <StackLayout>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+            </StackLayout.GestureRecognizers>
+            <Label Text="Откройте брокерский счёт онлайн" HorizontalOptions="Center" HeightRequest="50" FontSize="13" TextColor="{StaticResource Primary}"
+                   FontAttributes="Bold"/>
+        </StackLayout>
+    </Shell.FlyoutFooter>
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     
     <!--<MenuItem Text="Вход" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">

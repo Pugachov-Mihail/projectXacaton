@@ -13,6 +13,7 @@ namespace MobileApp.ViewModels
     {
         private string text;
         private string description;
+        private string tegs;
 
         public NewItemViewModel()
         {
@@ -40,6 +41,12 @@ namespace MobileApp.ViewModels
             set => SetProperty(ref description, value);
         }
 
+        public string Tegs
+        {
+            get => tegs;
+            set => SetProperty(ref tegs, value);
+        }
+
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
@@ -54,7 +61,12 @@ namespace MobileApp.ViewModels
             Item newItem = new Item()
             {
                 Title = Text,
-                Text = Description
+                Date = DateTime.Today.ToString().Substring(0, 10),
+                Text = Description,
+                Publication = true,
+                News = Tegs,
+                UserFirstName = Download.UserFirstName,
+                UserSecondName = Download.UserSecondName
             };
             Debug.WriteLine("Cont Save");
             await Download.mds.AddItemAsync(newItem);

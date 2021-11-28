@@ -38,16 +38,18 @@
                             <Frame BorderColor="#F0F4F7" Padding="13" BackgroundColor="#F0F4F7">
                                 <Frame BorderColor="#F0F4F7" CornerRadius="10" Padding="0">
                                     <Grid ColumnDefinitions="1.2*, 5*, 2*, 1*"  RowDefinitions="2*,1.5*, 1.5*,2.5*" HeightRequest="150" Padding="15" x:DataType="model:Item" BackgroundColor="#FFFFFF">
-                                        <Label Text="{Binding Title}" Grid.ColumnSpan="3" LineBreakMode="NoWrap" VerticalTextAlignment="Center" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16"/>
-                                        <Label Text="Date" Grid.Row="1" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
-                                        <Label Text="#Tegs" Grid.Row="2" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                        <Label Text="{Binding Title}" Grid.ColumnSpan="3" TextColor="#28282D" LineBreakMode="NoWrap" VerticalTextAlignment="Center" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16"/>
+                                        <Label Text="{Binding Date}" TextColor="#818990" Grid.Row="1" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                        <Label Text="{Binding News}" TextColor="#818990" Grid.Row="2" Grid.ColumnSpan="3" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
                                         <Image Source="icon_star.png" Grid.Column="3" Grid.Row="0" VerticalOptions="Center"/>
                                         <Image Source="icon_avatar.png" Grid.Column="0" Grid.Row="3" VerticalOptions="Center"/>
                                         <StackLayout Grid.Column="1"  Grid.Row="3" VerticalOptions="Center" Orientation="Vertical" Margin="5, 0, 0, 0">
-                                            <Label Text="First Name" FontSize="13"/>
-                                            <Label Text="Second Name" FontSize="13"/>
+                                            <Label Text="{Binding UserFirstName}" TextColor="#818990" FontSize="13"/>
+                                            <Label Text="{Binding UserSecondName}" TextColor="#818990" FontSize="13"/>
                                         </StackLayout>
-                                        <Button Text="Читать" FontSize="Body" CornerRadius="10" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"/>
+                                        <Button Text="Читать" FontSize="Body" CornerRadius="10" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" 
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:NewsFeedViewModel}}, Path=ItemTapped}"		
+                                                CommandParameter="{Binding .}"/>
                                     </Grid>
                                 </Frame>
                             </Frame>

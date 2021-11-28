@@ -18,7 +18,7 @@ namespace MobileApp.Services
 
         public HttpClient client = new HttpClient();
         public string api = "api/news/";
-        public string url = "https://2fd7-185-34-240-5.ngrok.io/";
+        public string url = "https://0a0b-77-236-231-130.ngrok.io/";
         JsonSerializerOptions options = new JsonSerializerOptions();
 
         public MockDataStore()
@@ -29,7 +29,6 @@ namespace MobileApp.Services
         public async Task<bool> AddItemAsync(Item item)
         {
             items.Add(item);
-            Debug.WriteLine("itemadded");
             return await Task.FromResult(true);
         }
 
@@ -69,9 +68,33 @@ namespace MobileApp.Services
 
         public async Task<IEnumerable<Item>> GetPostsAsync(bool forceRefresh = false)
         {
-            //string result = await client.GetStringAsync(url + api);
-            string result= "[{\"Title\":\"test\",\"News\":null,\"Text\":\"test\",\"Date\":\"2021-11-27\",\"Publication\":false}, {\"Title\":\"SecondTitle\",\"News\":null,\"Text\":\"test\",\"Date\":\"2021-11-27\",\"Publication\":true}]";
-            return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Item>>(result, options);
+            string result = await client.GetStringAsync(url + api);
+            //string result= "[{\"Title\":\"test\",\"News\":null,\"Text\":\"test\",\"Date\":\"2021-11-27\",\"Publication\":false}, {\"Title\":\"SecondTitle\",\"News\":null,\"Text\":\"test\",\"Date\":\"2021-11-27\",\"Publication\":true}]";
+            Debug.WriteLine($"RESULT: {result}");
+            var itemParse = System.Text.Json.JsonSerializer.Deserialize<IEnumerable<ItemParse>>(result, options);
+            List<Item> newitems = items;
+            List<string> itemsT = new List<string>();
+            foreach (var item in items)
+            {
+                itemsT.Add(item.Title);
+            }
+                foreach (var item in itemParse)
+            {
+                if (!itemsT.Contains(item.title))
+                {
+                    newitems.Add(new Item
+                    {
+                        Title = item.title,
+                        Text = item.text,
+                        Date = item.date,
+                        News = item.news,
+                        Publication = item.publication,
+                        UserFirstName = item.user.first_name,
+                        UserSecondName = item.user.last_name
+                    });
+                }
+            }
+            return newitems;
         }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
@@ -92,6 +115,7 @@ namespace MobileApp.Services
                 Debug.WriteLine($"not response.IsSuccessStatusCode {response}");
             }*/
             return await GetPostsAsync();
+            //return items;
         }
     }
 }

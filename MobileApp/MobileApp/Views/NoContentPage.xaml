@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.NoContentPage"
+             Title="В работе"
+             BackgroundColor="#F0F4F7">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#F0F4F7">
+            <Label Text="Разработка страницы ещё ведётся"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                </StackLayout.GestureRecognizers>
+                <Label Text="Откройте брокерский счёт онлайн" HorizontalOptions="Center" HeightRequest="50" FontSize="13" TextColor="{StaticResource Primary}"
+                   FontAttributes="Bold"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

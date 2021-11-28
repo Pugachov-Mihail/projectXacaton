@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using MobileApp.Models;
 using MobileApp.Services;
+using MobileApp.Views;
 using System.Collections.ObjectModel;
 
 namespace MobileApp.ViewModels
@@ -16,12 +17,14 @@ namespace MobileApp.ViewModels
     {
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
+        public Command<Item> ItemTapped { get; }
 
         public NewsFeedViewModel()
         {
             Title = "Новости";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            ItemTapped = new Command<Item>(OnItemSelected);
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -46,6 +49,15 @@ namespace MobileApp.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        async void OnItemSelected(Item item)
+        {
+            if (item == null)
+                return;
+
+            // This will push the ItemDetailPage onto the navigation stack
+            await Shell.Current.GoToAsync($"{nameof(RedaNewPage)}?{nameof(RedaNewViewModel.CurrItem)}={item}");
         }
     }
 }
