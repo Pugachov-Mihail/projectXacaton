@@ -38,9 +38,13 @@ class CreateUserSerializers(serializers.ModelSerializer):
 
 class UsersProfilSerializers(serializers.ModelSerializer):
     """Новости и комментарии пользователя"""
+    user = serializers.CharField()
+    review = serializers.CharField()
+    news = serializers.CharField()
+
     class Meta:
         model = UserProfil
-        fields = "__all__"
+        fields = ('user', 'review', 'news')
 
 class UserFollowingerSerializers(serializers.ModelSerializer):
     """Подписчики"""
@@ -54,7 +58,7 @@ class Users(serializers.ModelSerializer):
     last_name = serializers.CharField()
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name']
+        fields = ('username', 'first_name', 'last_name')
 
 
 class ReviewCreateSerializers(serializers.ModelSerializer):
@@ -73,3 +77,8 @@ class NewsListSerializers(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = "__all__"
+
+class UsersSeri(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'

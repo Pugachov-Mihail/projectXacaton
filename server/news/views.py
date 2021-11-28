@@ -9,7 +9,7 @@ from profileUser.models import UserProfil, UserFollowing
 
 from .models import News
 from .serialaizers import NewsListSerializers, NewsCreateSerializers,ReviewCreateSerializers,\
-    UserFollowingerSerializers, UsersProfilSerializers, CreateUserSerializers
+    UserFollowingerSerializers, UsersProfilSerializers, CreateUserSerializers, UsersSeri
 
 # Create your views here.
 
@@ -22,12 +22,22 @@ class NewsListView(APIView):
 
         return Response(serializerNews.data)
 
+class NewsPage(APIView):
+    permission_classes = [permissions.AllowAny]
+    def get(self, pk):
+        try:
+            news = News.objects.filter(pk=pk)
+
+        except:
+            news = None
+        serializer = NewsListSerializers(news, many=True)
+        return Response(serializer.data)
+
+
 class NewsListCreate(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def post(self, request):
-        serilazerNews = NewsCreateSerializers(data=request.data,
-                                              #autor=request.data.get('user_id')
-                                              )
+        serilazerNews = NewsCreateSerializers(data=request.data)
         if serilazerNews.is_valid():
             serilazerNews.save()
         else:
@@ -64,6 +74,7 @@ class CreateUser(CreateAPIView):
 
 
 class UsersProfilList(APIView):
+    """Отображение профиля пользователя"""
     permission_classes = [permissions.AllowAny]
 
     def get(self, pk):
